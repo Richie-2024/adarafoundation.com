@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Adara Scholarship Foundation</title>
-    <link rel="stylesheet" href=".css">
+   
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="scrip.js"></script>
     <style>
        /* Reset and Base Styles */
 * {
@@ -97,122 +98,149 @@ body {
 
 /* Hero Section */
 .hero {
-  position: relative;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  color: var(--white);
-  padding-top: 70px;
-  overflow: hidden;
-}
-
-.hero::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(44, 62, 80, 0.7);
-  z-index: 1;
-}
-
-.slideshow {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
-}
-
-.slideshow div {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  opacity: 0;
-  animation: slideshow 15s linear infinite;
-}
-
-.slideshow div:nth-child(1) {
-  background-image: url('/pr/images/sch1.avif');
-  animation-delay: 0s;
-}
-
-.slideshow div:nth-child(2) {
-  background-image: url('/pr/images/sch1.avif');
-  animation-delay: 5s;
-}
-
-.slideshow div:nth-child(3) {
-  background-image: url('/pr/images/sch2.avif');
-  animation-delay: 10s;
-}
-
-@keyframes slideshow {
-  0%, 28% {
+    position: relative;
+    height: 100vh;
+    background: #000;
+    margin-top: 64px;
+  }
+  
+  .slideshow {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+  
+  .slides-container {
+    position: relative;
+    height: 100%;
+    width: 100%;
+  }
+  
+  .slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  
+  .slide.active {
     opacity: 1;
-    transform: scale(1.1);
   }
-  33%, 95% {
-    opacity: 0;
-    transform: scale(1);
+  
+  .nav-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.8);
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: #2563eb;
+    transition: all 0.3s ease;
+    z-index: 10;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
   }
-  100% {
-    opacity: 0;
-    transform: scale(1.1);
+  
+  .nav-button:hover {
+    background: rgba(255, 255, 255, 0.9);
+    transform: translateY(-50%) scale(1.1);
   }
-}
+  
+  .nav-button:active {
+    transform: translateY(-50%) scale(0.95);
+  }
+  
+  .nav-button.prev {
+    left: 20px;
+  }
+  
+  .nav-button.next {
+    right: 20px;
+  }
+  
+  .hero-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #fff;
+    z-index: 2;
+    width: 90%;
+    max-width: 800px;
+    padding: 0 15px;
+  }
+  
+  .hero-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: -1;
+    border-radius: 10px;
+  }
+  
+  .hero-content h1 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 700;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+  }
+  
+  .hero-subtitle {
+    font-size: clamp(1rem, 3vw, 1.5rem);
+    margin-bottom: 2rem;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+  }
+  
+  .hero-cta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .cta-button {
+    display: inline-block;
+    padding: clamp(0.75rem, 2vw, 1rem) clamp(1.5rem, 3vw, 2rem);
+    background: #2563eb;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    font-size: clamp(0.875rem, 2vw, 1rem);
+  }
+  
+  .cta-button:hover {
+    background: #1d4ed8;
+    transform: translateY(-2px);
+  }
+  
+  .cta-button:active {
+    transform: translateY(0);
+  }
+  
+  .deadline-text {
+    font-size: clamp(0.875rem, 2vw, 1.1rem);
+    font-weight: 500;
+  }
 
-.hero-content {
-  max-width: 800px;
-  padding: 2rem;
-  position: relative;
-  z-index: 2;
-}
-
-.hero h1 {
-  font-size: 3.5rem;
-  margin-bottom: 1rem;
-  font-weight: 700;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-}
-
-.hero-subtitle {
-  font-size: 1.5rem;
-  margin-bottom: 2rem;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-}
-
-.hero-cta {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-}
-
-.cta-button {
-  background: var(--accent-color);
-  color: var(--white);
-  padding: 1rem 2.5rem;
-  border-radius: 50px;
-  text-decoration: none;
-  font-weight: bold;
-  transition: var(--transition);
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  position: relative;
-  z-index: 2;
-}
- 
-.cta-button a:hover{
-    color: blue;
-}
 /* Mission Section */
 .mission {
   padding: 5rem 0;
@@ -324,19 +352,18 @@ body {
 }
 
 /* Contact Section */
-.contact {
+tact {
   padding: 5rem 0;
+  background: var(--white);
 }
 
 .contact-content {
-  display: flex;
-  justify-content: center;
-  margin-top: 3rem;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
 .contact-info {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 2rem;
 }
 
@@ -344,11 +371,34 @@ body {
   display: flex;
   align-items: center;
   gap: 1rem;
+  transition: var(--transition);
+}
+
+.contact-item:hover {
+  transform: translateY(-2px);
 }
 
 .contact-item i {
   font-size: 1.5rem;
   color: var(--secondary-color);
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(52, 152, 219, 0.1);
+  border-radius: 50%;
+  transition: var(--transition);
+}
+
+.contact-item.whatsapp i {
+  color: #25D366;
+  background: rgba(37, 211, 102, 0.1);
+}
+
+.contact-item.whatsapp:hover i {
+  background: #25D366;
+  color: white;
 }
 
 .contact-item a {
@@ -360,6 +410,11 @@ body {
 .contact-item a:hover {
   color: var(--secondary-color);
 }
+
+.contact-item.whatsapp a:hover {
+  color: #25D366;
+}
+
 
 /* Footer */
 .footer {
@@ -416,14 +471,12 @@ body {
   }
 
   .nav-links {
-    flex-direction: column;
+    overflow-x: scroll;
     text-align: center;
-    gap: 1rem; 
-      overflow-x: scroll;
-      width:100%;
-      
+    gap: 1rem;
+    width:100%;
   }
-
+ 
   .hero h1 {
     font-size: 2.5rem;
   }
@@ -443,7 +496,22 @@ body {
     gap: 1rem;
   }
 }
-
+/* Touch Device Optimizations */
+@media (hover: none) {
+    .nav-button:hover {
+      transform: translateY(-50%);
+      background: rgba(255, 255, 255, 0.8);
+    }
+  
+    .criteria-card:hover {
+      transform: none;
+    }
+  
+    .cta-button:hover {
+      transform: none;
+      background: #2563eb;
+    }
+  }
 /* Animations */
 @keyframes fadeIn {
   from {
@@ -465,62 +533,74 @@ body {
     </style>
 </head>
 <body>
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="logo-container">
-                <img id="logo" src="/pr/images/hh.jpg" alt="Adara Scholarship Foundation Logo" class="logo">
-                <span class="logo-text">Adara Foundation</span>
-            </div>
-            <div class="nav-links">
-                <a href="#home" class="active">Home</a>
-                <a href="#eligibility">Eligibility</a>
-                <a href="#guidelines">Guidelines</a>
-                <a href="#contact">Contact</a>
-            </div>
-        </div>
-    </nav>
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="logo-container">
+        <img src="hh.jpg" alt="Adara Scholarship Foundation Logo" class="logo">
+        <span class="logo-text">Adara Foundation</span>
+      </div>
+      <div class="nav-links">
+        <a href="#home" class="active">Home</a>
+        <a href="#eligibility">Eligibility</a>
+        <a href="#guidelines">Guidelines</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
 
-    <header class="hero" id="home">
-        <div class="hero-content">
-            <h1>Adara Scholarship Foundation</h1>
-            <p class="hero-subtitle">Empowering Education for Disadvantaged Students in Africa</p>
-            <div class="hero-cta">
-                <a href="app.html" class="cta-button">Apply Now</a>
-                <p class="deadline-text">Applications close December 10th, 2024</p>
-            </div>
-        </div>
-    </header>
-    <p>
-        The <strong>Adara Scholarship Foundation</strong>, a Norwegian-based organization, invites applications from qualified Ugandan students pursuing higher education. Our mission is to extend <strong>fully funded education</strong> to poverty-disadvantaged students, building a brighter future for humanity.
-    </p>
+  <header class="hero" id="home">
+    <div class="slideshow">
+      <div class="slides-container">
+        <div class="slide active" style="background-image: url('view.avif')"></div>
+        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1541339907198-e08756dedf3f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80')"></div>
+        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1627556704290-2b1f5853ff78?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80')"></div>
+      </div>
+      <button class="nav-button prev">❮</button>
+      <button class="nav-button next">❯</button>
+    </div>
+    <div class="hero-content">
+      <h1>Adara Scholarship Foundation</h1>
+      <p class="hero-subtitle">Empowering Education for Disadvantaged Students in Africa</p>
+      <div class="hero-cta">
+        <a href="app.html" class="cta-button">Apply Now</a>
+        <p class="deadline-text">Applications close December 10th, 2024</p>
+      </div>
+    </div>
+   <div>
     
+   </div>
+  </header>
+<div class="elo">
+  <p>
+    The <strong>Adara Scholarship Foundation</strong>, a Norwegian-based organization, invites applications from qualified Ugandan students pursuing higher education.<br>
+   
     <main class="main-content">
-        <section class="mission">
-            <div class="container">
-                <div class="mission-content">
-                    <h2>Our Mission</h2>
-                    <p>The Adara Scholarship Foundation, based in Norway, is dedicated to extending fully funded education opportunities to poverty-disadvantaged students in Uganda, building a brighter future for humanity.</p>
-                    <div class="stats">
-                        <div class="stat-item">
-                            <i class="fas fa-graduation-cap"></i>
-                            <h3>100+</h3>
-                            <p>Scholars</p>
-                        </div>
-                        <div class="stat-item">
-                            <i class="fas fa-university"></i>
-                            <h3>20+</h3>
-                            <p>Partner Universities</p>
-                        </div>
-                        <div class="stat-item">
-                            <i class="fas fa-globe-africa"></i>
-                            <h3>1</h3>
-                            <p>Mission</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
+      <section class="mission">
+          <div class="container">
+              <div class="mission-content">
+                  <h2>Our Mission</h2>
+                  <p>The Adara Scholarship Foundation, is dedicated to extending fully funded education opportunities to poverty-disadvantaged students  who have been admitted in the public universities in Uganda, building a brighter future for humanity.</p>
+                  <div class="stats">
+                      <div class="stat-item">
+                          <i class="fas fa-graduation-cap"></i>
+                          <h3>100+</h3>
+                          <p>Scholars</p>
+                      </div>
+                      <div class="stat-item">
+                          <i class="fas fa-university"></i>
+                          <h3>20+</h3>
+                          <p>Partner Universities</p>
+                      </div>
+                      <div class="stat-item">
+                          <i class="fas fa-globe-africa"></i>
+                          <h3>1</h3>
+                          <p>Mission</p>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </section>
+</div>
         <section class="eligibility" id="eligibility">
             <div class="container">
                 <h2>Eligibility Criteria</h2>
@@ -628,8 +708,55 @@ body {
             </div>
         </div>
     </footer>
+<script>
+  
+</script>
+    <script> // Slideshow functionality
+      const slides = document.querySelectorAll('.slide');
+      let currentSlide = 0;
+      let slideInterval;
+  
+      function showSlide(index) {
+        slides.forEach(slide => slide.classList.remove('active'));
+        slides[index].classList.add('active');
+      }
+  
+      function nextSlide() {
+        currentSlide = (currentSlide + 1) % slides.length;
+        showSlide(currentSlide);
+      }
+  
+      function prevSlide() {
+        currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+        showSlide(currentSlide);
+      }
+  
+      // Initialize slideshow
+      function startSlideshow() {
+        slideInterval = setInterval(nextSlide, 5000);
+      }
+  
+      function stopSlideshow() {
+        clearInterval(slideInterval);
+      }
+  
+      // Event listeners
+      document.querySelector('.next').addEventListener('click', () => {
+        stopSlideshow();
+        nextSlide();
+        startSlideshow();
+      });
+  
+      document.querySelector('.prev').addEventListener('click', () => {
+        stopSlideshow();
+        prevSlide();
+        startSlideshow();
+      });
+  
+      document.querySelector('.slideshow').addEventListener('mouseenter', stopSlideshow);
+      document.querySelector('.slideshow').addEventListener('mouseleave', startSlideshow);
+  
 
-    <script>
         // Smooth scrolling for internal links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
